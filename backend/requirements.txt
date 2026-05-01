@@ -12,3 +12,5 @@ pytest
 pytest-django
 mongomock
 cryptography==47.0.0
+gunicorn
+dnspython

@@ -15,6 +15,16 @@ frontend/.env
 frontend/.env.local
 frontend/.env.*.local
 
+# GCP Deploy (solo local, no rastro en git)
+backend/Dockerfile
+backend/.dockerignore
+backend/.gcloudignore
+frontend/Dockerfile
+frontend/nginx.conf
+frontend/.dockerignore
+frontend/.gcloudignore
+frontend/cloudbuild.yaml
+
 # Claude Code
 .claude/
 CLAUDE.md
