@@ -1,0 +1,31 @@
+{
+  "_id": "ObjectId('66719abc1234567890abcdef')",
+  "id_supabase": "550e8400-e29b-41d4-a716-446655440000",
+  "correo": "juan@gmail.com",
+  "nombre_usuario": "juan_perez",
+  "nombre_completo": "Juan Pérez",
+  "rol": "usuario", "administrador",
+  "plan": "gratis",
+  "pais": "BO",
+  "activo": true,
+  "bloqueado": false,
+  "intentos_usados": 0,
+  "fecha_creacion": "2026-04-30T18:00:00.000Z"
+}
+
+📦 Colección anonimos
+
+json
+
+{
+  "_id": "ObjectId('66719def0987654321fedcba')",
+  "id_sesion": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+  "ip": "192.168.1.10",
+  "navegador": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/120.0",
+  "pais": "BO",
+  "intentos_usados": 0,
+  "fecha_creacion": "2026-04-30T18:00:00.000Z",
+  "fecha_expiracion": "2026-05-30T18:00:00.000Z"
+}
+
+1

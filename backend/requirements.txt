@@ -1,0 +1,14 @@
+django>=5.0
+djangorestframework
+mongoengine
+pymongo
+djangorestframework-simplejwt
+django-cors-headers
+python-decouple
+pyjwt
+requests
+bcrypt
+pytest
+pytest-django
+mongomock
+cryptography==47.0.0
