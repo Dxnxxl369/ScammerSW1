@@ -1,12 +1,16 @@
 import type { ReactNode } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { useAuth } from '../hooks/useAuth'
-import { useAnonimo } from '../hooks/useAnonimo'
 import { Button } from './ui'
 
+const RUTAS_SIN_BADGE = ['/login', '/registro', '/recuperar-password']
+const LIMITE = 3
+
 export function Layout({ children }: { children: ReactNode }) {
-  const { usuario, cerrarSesion } = useAuth()
-  const { anonimo, intentosRestantes } = useAnonimo()
+  const { usuario, anonimo, cerrarSesion } = useAuth()
+  const { pathname } = useLocation()
+  const mostrarBadge = !RUTAS_SIN_BADGE.includes(pathname)
+  const intentosRestantes = anonimo ? Math.max(0, LIMITE - anonimo.intentos_usados) : 0
 
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col">
@@ -26,7 +30,7 @@ export function Layout({ children }: { children: ReactNode }) {
               </>
             ) : (
               <>
-                {anonimo && (
+                {anonimo && mostrarBadge && (
                   <div className="flex items-center gap-2 text-xs">
                     <span className={`px-2 py-1 rounded-md font-medium ${
                       intentosRestantes === 0

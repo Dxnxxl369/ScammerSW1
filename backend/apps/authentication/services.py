@@ -82,7 +82,7 @@ class UsuarioService:
 
 
 class AnonimoService:
-    DIAS_EXPIRACION = 30
+    HORAS_EXPIRACION = 1
 
     @staticmethod
     def crear_sesion(
@@ -95,7 +95,7 @@ class AnonimoService:
             ip=ip,
             navegador=navegador,
             pais=pais,
-            fecha_expiracion=datetime.utcnow() + timedelta(days=AnonimoService.DIAS_EXPIRACION),
+            fecha_expiracion=datetime.utcnow() + timedelta(hours=AnonimoService.HORAS_EXPIRACION),
         )
         anonimo.save()
         return anonimo
@@ -103,6 +103,11 @@ class AnonimoService:
     @staticmethod
     def obtener_por_id_sesion(id_sesion: str) -> Optional[Anonimo]:
         return Anonimo.objects(id_sesion=id_sesion).first()
+
+    @staticmethod
+    def obtener_por_ip(ip: str) -> Optional[Anonimo]:
+        from datetime import datetime
+        return Anonimo.objects(ip=ip, fecha_expiracion__gt=datetime.utcnow()).order_by('-fecha_creacion').first()
 
     @staticmethod
     def incrementar_intentos(id_sesion: str) -> Optional[Anonimo]:

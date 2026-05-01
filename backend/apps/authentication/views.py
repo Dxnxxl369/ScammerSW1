@@ -104,6 +104,11 @@ class CrearSesionAnonimaView(APIView):
         ip = self._obtener_ip(request)
         navegador = request.META.get('HTTP_USER_AGENT', '')[:500]
         pais = request.data.get('pais', 'BO')
+
+        existente = AnonimoService.obtener_por_ip(ip)
+        if existente:
+            return respuesta_exitosa(existente.to_dict(), mensaje='Sesión anónima recuperada', codigo_http=status.HTTP_200_OK)
+
         anonimo = AnonimoService.crear_sesion(ip=ip, navegador=navegador, pais=pais)
         return respuesta_exitosa(anonimo.to_dict(), mensaje='Sesión anónima creada', codigo_http=status.HTTP_201_CREATED)
 

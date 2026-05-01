@@ -2,7 +2,7 @@ import { api } from './api'
 import type { Anonimo, RespuestaApi } from '../types/auth'
 
 const COOKIE_NAME = 'id_sesion_anonimo'
-const COOKIE_DAYS = 30
+const COOKIE_HOURS = 1
 
 export const anonimoService = {
   async crearSesion(): Promise<Anonimo | null> {
@@ -41,7 +41,7 @@ export const anonimoService = {
 
   guardarEnCookie(idSesion: string): void {
     const fecha = new Date()
-    fecha.setDate(fecha.getDate() + COOKIE_DAYS)
+    fecha.setTime(fecha.getTime() + COOKIE_HOURS * 60 * 60 * 1000)
     document.cookie = `${COOKIE_NAME}=${idSesion}; expires=${fecha.toUTCString()}; path=/; SameSite=Lax`
   },
 
